@@ -7,7 +7,7 @@ function BinarySearchTree() {
 
 BinarySearchTree.prototype = {
     constructor: BinarySearchTree,
-    insert: function(value, currNode) {
+    insert: function insert(value, currNode) {
         var node = {
             value: value,
             left: null,
@@ -15,27 +15,36 @@ BinarySearchTree.prototype = {
         };
         if (!this.root) {
             this.root = node;
-            return;
+            return this;
         }
         var insertKey = "right";
         currNode = currNode || this.root;
         if (value < currNode.value) {
-          insertKey = "left";
+            insertKey = "left";
         }
         if (!currNode[insertKey]) {
-          currNode[insertKey] = node;
+            currNode[insertKey] = node;
         } else {
-          this.insert(value, currNode[insertKey]);
+            this.insert(value, currNode[insertKey]);
         }
+        return this;
     }
 };
 
 var btree = new BinarySearchTree();
-btree.insert(11);
-btree.insert(1);
-btree.insert(13);
-btree.insert(0);
-console.log(btree.root.value);
-console.log(btree.root.left.value);
-console.log(btree.root.right.value);
-console.log(btree.root.left.left.value);
+btree.insert(100).insert(20).insert(120).insert(12);
+
+//  Level-order traversal is breadth first traversal for the
+//  For each node, first the node is visited and then it's child nodes are put in FIFO
+var queue = [];
+var tempNode = btree.root;
+
+while (tempNode) {
+    //  log value of root node
+    console.log(tempNode.value);
+    //  push it's children into a queue
+    if (tempNode.left) queue.push(tempNode.left);
+    if (tempNode.right) queue.push(tempNode.right);
+    //  dequeue each child node from the queue
+    tempNode = queue.shift();
+}

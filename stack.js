@@ -1,15 +1,15 @@
 //	Stack - LIFO
 function Stack() {
 	var items = [];
-	this.add = function(item) {
+	this.add = function add(item) {
         items.unshift(item);
 		return this;
 	};
-	this.remove = function() {
+	this.remove = function remove() {
         items.shift();
       	return this;
 	};
-    this.get = function() {
+    this.get = function get() {
       return items;
     };
 	return this;
@@ -25,15 +25,15 @@ console.log(mystack.get());
 
 function Queue() {
 	var items = [];
-	this.add = function(item) {
+	this.add = function add(item) {
 		items.push(item);
 		return this;
 	};
-	this.remove = function() {
+	this.remove = function remove() {
 		items.shift();
 		return this;
 	};
-	this.get = function() {
+	this.get = function get() {
 		return items;
 	}
 	return this;
