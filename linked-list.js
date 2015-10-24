@@ -6,46 +6,53 @@
 //  A node has a property called data, which stores a value
 //  A node has a property called next, which points to the next node in the list
 function LinkedList() {
-    this.firstNode = null;  //  pointer to the first item in the list
-    this.length = 0;        //  length of the linked list
+    this.firstNode = null; //  pointer to the first item in the list
+    this.length = 0; //  length of the linked list
     return this;
 }
 
 LinkedList.prototype = {
     constructor: LinkedList,
-    addNode: function(value) {
-        //  adds a new node to the end of the list.
-        var node = {    //  create a new node and place data in it
-            data: value,
+    addNode: function addNode(value, currNode) {
+        //  initialize the node to be inserted
+        var node = {
+            value: value,
             next: null
-        },
-        pivot;          //  used to traverse the list
+        };
+        //  set the first node of the list
         if (!this.firstNode) {
             this.firstNode = node;
-        } else {
-            pivot = this.firstNode;     //  (re-)assign firstNode to pivot
-            while (pivot.next) {        //  increment the pivot to the last node
-                pivot = pivot.next;
-            }
-            pivot.next = node;          //  assign new node to the last node.next
+            return this;
         }
+        //  currNode to recursively navigate the list for node insertion
+        currNode = currNode || this.firstNode;
+
+        //  insert the node
+        if (!currNode.next) {
+            currNode.next = node;
+        } else {
+            this.addNode(value, currNode.next);
+        }
+
         this.length++;
         return this;
     },
     getNode: function(index) {
         //  returns the value of a node at index
-        var i = 1, curr;
+        var i = 1,
+            curr;
         curr = this.firstNode;
-        while(i < index) {
-          curr = curr.next;
-          i++;
+        while (i < index) {
+            curr = curr.next;
+            i++;
         }
         return curr;
     },
     indexOf: function(value) {
         //  returns the index of a node in the list,
         //  if the node is not present in the list, it returns -1.
-        var currNode = this.firstNode, index = 0;
+        var currNode = this.firstNode,
+            index = 0;
         while (currNode) {
             if (currNode.value === value) {
                 return index;
@@ -58,12 +65,12 @@ LinkedList.prototype = {
     insertNode: function(position, value) {
         // This inserts a new item at a specified position in the list.
         var node = {
-            value: value,
-            next: null
-        },
-        currNode = this.firstNode,
-        prevNode = null,
-        index = 0;
+                value: value,
+                next: null
+            },
+            currNode = this.firstNode,
+            prevNode = null,
+            index = 0;
 
         if (position >= 0 && position <= this.length) {
             if (position === 0) {
