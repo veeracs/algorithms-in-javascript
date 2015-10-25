@@ -91,6 +91,13 @@ LinkedList.prototype = {
             throw new Error("The index is not within the bounds, no node was added to the list ");
         }
         return this;
+    },
+    printNodes: function printNodes() {
+        var currNode = llist.firstNode;
+        while (currNode) {
+            console.log(currNode.value);
+            currNode = currNode.next;
+        }
     }
 };
 
