@@ -35,24 +35,25 @@ BinarySearchTree.prototype = {
         }
 
         return this;
+    },
+    walk: function walk() {
+        //  Level-order traversal is breadth first traversal
+        //  For each node, first the node is visited and then it's child nodes are put in FIFO
+
+        var queue = [];
+        var tempNode = btree.root;
+
+        while (tempNode) {
+            //  log value of root node
+            console.log(tempNode.value);
+            //  push it's children into a queue
+            if (tempNode.left) queue.push(tempNode.left);
+            if (tempNode.right) queue.push(tempNode.right);
+            //  dequeue each child node from the queue
+            tempNode = queue.shift();
+        }
     }
 };
 
 var btree = new BinarySearchTree();
 btree.insert(100).insert(20).insert(120).insert(12);
-
-//  Level-order traversal is breadth first traversal
-//  For each node, first the node is visited and then it's child nodes are put in FIFO
-
-var queue = [];
-var tempNode = btree.root;
-
-while (tempNode) {
-    //  log value of root node
-    console.log(tempNode.value);
-    //  push it's children into a queue
-    if (tempNode.left) queue.push(tempNode.left);
-    if (tempNode.right) queue.push(tempNode.right);
-    //  dequeue each child node from the queue
-    tempNode = queue.shift();
-}

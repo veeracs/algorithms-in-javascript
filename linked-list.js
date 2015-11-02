@@ -31,6 +31,7 @@ LinkedList.prototype = {
         if (!currNode.next) {
             currNode.next = node;
         } else {
+            //  propagate the list
             this.addNode(value, currNode.next);
         }
 
