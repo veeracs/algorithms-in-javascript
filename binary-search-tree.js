@@ -36,8 +36,59 @@ BinarySearchTree.prototype = {
 
         return this;
     },
-    walk: function walk() {
-        //  Level-order traversal is breadth first traversal
+    preOrder: function preOrder(currNode) {
+        //  root -> left -> right
+        // print the currNode
+        // recurse the left subtree
+        // recurse the right subtree
+        currNode = currNode || this.root;
+        if (!currNode) {
+            return;
+        }
+        console.log(currNode.value);
+        if (currNode.left) {
+            preOrder(currNode.left);
+        }
+        if (currNode.right) {
+            preOrder(currNode.right);
+        }
+    },
+    inOrder: function inOrder(currNode) {
+        // left -> root -> right
+        // recurse the left subtree
+        // print the currNode
+        // recurse the right subtree
+        currNode = currNode || this.root;
+        if (!currNode) {
+            return;
+        }
+        if (currNode.left) {
+            inOrder(currNode.left);
+        }
+        console.log(currNode.value);
+        if (currNode.right) {
+            inOrder(currNode.right);
+        }
+    },
+    postOrder: function postOrder(currNode) {
+        // left -> right -> root
+        // recurse the left subtree
+        // recurse the right subtree
+        // print the currNode
+        currNode = currNode || this.root;
+        if (!currNode) {
+            return;
+        }
+        if (currNode.left) {
+            postOrder(currNode.left);
+        }
+        if (currNode.right) {
+            postOrder(currNode.right);
+        }
+        console.log(currNode.value);
+    },
+    levelOrder: function levelOrder() {
+        //  Level-order traversal is Breadth First Search Traversal
         //  For each node, first the node is visited and then it's child nodes are put in FIFO
 
         var queue = [];
@@ -57,3 +108,8 @@ BinarySearchTree.prototype = {
 
 var btree = new BinarySearchTree();
 btree.insert(100).insert(20).insert(120).insert(12);
+//  print nodes with breadth first search
+btree.levelOrder();
+btree.preOrder();
+btree.inOrder();
+btree.postOrder();
