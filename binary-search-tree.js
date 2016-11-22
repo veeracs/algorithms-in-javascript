@@ -90,18 +90,17 @@ BinarySearchTree.prototype = {
     levelOrder: function levelOrder() {
         //  Level-order traversal is Breadth First Search Traversal
         //  For each node, first the node is visited and then it's child nodes are put in FIFO
-
         var queue = [];
-        var tempNode = btree.root;
+        var currNode = this.root;
 
-        while (tempNode) {
+        while (currNode) {
             //  log value of root node
-            console.log(tempNode.value);
+            console.log(currNode.value);
             //  push it's children into a queue
-            if (tempNode.left) queue.push(tempNode.left);
-            if (tempNode.right) queue.push(tempNode.right);
+            if (currNode.left) queue.push(currNode.left);
+            if (currNode.right) queue.push(currNode.right);
             //  dequeue each child node from the queue
-            tempNode = queue.shift();
+            currNode = queue.shift();
         }
     }
 };
