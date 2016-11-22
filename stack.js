@@ -1,25 +1,26 @@
 //	Stack - LIFO
 function Stack() {
-	var items = [];
-	this.add = function add(item) {
-        items.unshift(item);
-		return this;
-	};
-	this.remove = function remove() {
-        items.shift();
-      	return this;
-	};
-    this.get = function get() {
-      return items;
-    };
-	return this;
+  this.items = [];
 }
 
-var myStack = new Stack();
-myStack.add(10).add(12);
-myStack.remove();
+Stack.prototype = {
+  constructor: Stack,
+  add: function add(item) {
+    this.items.unshift(item);
+    return this;
+  },
+  remove: function remove() {
+    this.items.shift();
+    return this;
+  },
+  get: function get() {
+    return this.items;
+  }
+};
 
-console.log(mystack.get());
+var myStack = new Stack();
+myStack.add(10).add(11).remove();
+console.log(myStack.get());
 
 //	Queue - FIFO
 
