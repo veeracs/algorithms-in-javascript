@@ -8,29 +8,29 @@ function BinarySearchTree() {
 BinarySearchTree.prototype = {
     constructor: BinarySearchTree,
     insert: function insert(value, currNode) {
-        //  initialize the node to be inserted
+        //  1. initialize the node to be inserted
         var node = {
             value: value,
             left: null,
             right: null
         };
-        //  set the root node of the tree
+        //  2. initialize the root node
         if (!this.root) {
             this.root = node;
             return this;
         }
-        //  currNode helps recursively navigate the tree for node insertion
+        //  3. determine currNode (helps recursively navigate the tree for node insertion)
         currNode = currNode || this.root;
-        //  determine where to insert the node
+        //  4. determine the insert key (where to insert the node)
         var insertKey = "right";
         if (value < currNode.value) {
             insertKey = "left";
         }
-        //  insert the node
+        //  5. insert the node if it doesn't exist
         if (!currNode[insertKey]) {
             currNode[insertKey] = node;
         } else {
-            //  recursively call insert
+            //  6. traverse the binary tree via recursion
             this.insert(value, currNode[insertKey]);
         }
 
