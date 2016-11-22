@@ -21,26 +21,3 @@ Stack.prototype = {
 var myStack = new Stack();
 myStack.add(10).add(11).remove();
 console.log(myStack.get());
-
-//	Queue - FIFO
-
-function Queue() {
-	var items = [];
-	this.add = function add(item) {
-		items.push(item);
-		return this;
-	};
-	this.remove = function remove() {
-		items.shift();
-		return this;
-	};
-	this.get = function get() {
-		return items;
-	}
-	return this;
-}
-
-var myQueue = new Queue();
-myQueue.add(100).add(23).add(12).add(78);
-myQueue.remove();
-console.log(myQueue.get());
