@@ -30,7 +30,7 @@ BinarySearchTree.prototype = {
         if (!currNode[insertKey]) {
             currNode[insertKey] = node;
         } else {
-            //  6. traverse the binary tree via recursion
+            //  6. if the left/right nodes exist, traverse the binary tree via recursion
             this.insert(value, currNode[insertKey]);
         }
 
