@@ -1,10 +1,11 @@
 //	Stack - LIFO
 
-function Stack() {
-  this.items = [];
-}
+// Shift/Unshift - add/remove items from the begining of the array
 
-// Shift/Unshift - Add/remove items from the begining of the array
+//  Stack - LIFO
+function Stack() {
+  this.items = [...arguments];
+}
 
 Stack.prototype = {
   constructor: Stack,
@@ -21,6 +22,6 @@ Stack.prototype = {
   }
 };
 
-var myStack = new Stack();
-myStack.add(10, 11, 12, 13).remove();
-console.log(myStack.get()); // returns 11, 12, 13
+var myStack = new Stack(10);
+myStack.add(11, 12, 13).remove();
+console.log(myStack.get()); // returns  12, 13, 10
