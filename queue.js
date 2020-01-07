@@ -4,22 +4,36 @@ function Queue() {
   this.items = [];
 }
 
+// Add/remove items from the begining of the array
+
+function Queue() {
+  this.items = [...arguments];
+}
+
 Queue.prototype = {
   constructor: Queue,
-  add: function add(item) {
-    this.items.push(item);
+  add: function() {
+    this.items.push(...arguments);
     return this;
   },
-  remove: function remove() {
+  remove: function() {
     this.items.shift();
     return this;
   },
-  get: function get() {
+  get: function() {
     return this.items;
   }
-};
+}
+  
+const myQueue = new Queue(1, 2, 3, 4);
 
-var myQueue = new Queue();
-myQueue.add(100).add(23).add(12).add(78);
+console.log(myQueue.get()); // [ 1, 2, 3, 4 ]
+
+myQueue.add(5, 6);
+
+console.log(myQueue.get()); // [ 1, 2, 3, 4, 5, 6 ]
+
 myQueue.remove();
-console.log(myQueue.get());
+
+console.log(myQueue.get()); // [ 2, 3, 4, 5, 6 ]
+
